@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zoo-Maths – Les maths avec les animaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800&display=swap">
+<style>
+:root{--sun:#ffd84d;--grass:#5fd068;--grass2:#38a84e;--sky:#7fd1ff;--coral:#ff7a6b;--grape:#8f6bff;--ink:#2b2350;--card:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;font-family:"Lexend","Andika","Trebuchet MS",system-ui,sans-serif;line-height:1.5;color:var(--ink);
+background:linear-gradient(#7fd1ff,#d9f3ff 62%,#5fd068 62.1%,#38a84e) fixed;overflow-x:hidden}
+.sky span{position:fixed;font-size:3.2rem;opacity:.9;animation:drift 40s linear infinite;pointer-events:none}
+.sky span:nth-child(1){top:8%;left:-10%}.sky span:nth-child(2){top:22%;left:-30%;animation-duration:60s;font-size:2.4rem}
+@keyframes drift{to{transform:translateX(140vw)}}
+#app{position:relative;max-width:560px;margin:0 auto;padding:14px 16px 40px}
+h1{font-size:1.9rem;margin:0;text-shadow:0 3px 0 #fff}
+h2{font-size:1.15rem;margin:20px 0 8px;text-shadow:0 2px 0 #fff8}
+button{font:inherit;color:inherit;cursor:pointer;border:0}
+button:focus-visible{outline:4px solid var(--grape);outline-offset:3px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chip{background:var(--sun);border-radius:30px;padding:8px 16px;font-weight:700;box-shadow:0 4px 0 #e0b400}
+.ic{width:56px;height:56px;border-radius:50%;background:#fff;font-size:1.6rem;box-shadow:0 4px 0 #0002}
+.hero,.stage{display:flex;align-items:center;gap:12px;margin:16px 0}
+.mascot{font-size:5rem;line-height:1;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 6px 0 #0002)}
+.mascot.jump{animation:jump .7s}.mascot.wig{animation:wig .5s}
+@keyframes float{50%{transform:translateY(-8px)}}
+@keyframes jump{30%{transform:translateY(-40px) rotate(-8deg)}60%{transform:translateY(0) rotate(8deg)}}
+@keyframes wig{25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+.bubble{background:#fff;border-radius:22px;padding:12px 16px;font-size:1.05rem;line-height:1.4;font-weight:700;position:relative;box-shadow:0 4px 0 #0002}
+.bubble:before{content:"";position:absolute;left:-10px;top:50%;margin-top:-9px;border:9px solid transparent;border-right-color:#fff;border-left:0}
+.lv,.pals{display:flex;gap:10px;flex-wrap:wrap}
+.lv button{flex:1;min-width:96px;min-height:64px;border-radius:20px;background:#fff;font-weight:700;box-shadow:0 5px 0 #0002;line-height:1.2}
+.lv button small{display:block;font-weight:400;font-size:.8rem}
+.lv .on,.pals .on{background:var(--sun);box-shadow:0 5px 0 #e0b400}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mb{min-height:118px;border-radius:26px;color:#fff;font-size:1.25rem;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 7px 0 #0003;transition:transform .1s}
+.mb:active,.a:active{transform:translateY(5px);box-shadow:0 2px 0 #0003}
+.mb span{font-size:2.6rem}
+.mb:nth-child(1){background:var(--coral)}.mb:nth-child(2){background:var(--grape)}.mb:nth-child(3){background:#2fb7e8}.mb:nth-child(4){background:#f59e0b}
+.pals button{width:64px;height:64px;border-radius:50%;background:#fff;font-size:2rem;box-shadow:0 4px 0 #0002;position:relative}
+.pals .lock{filter:grayscale(1);opacity:.55;font-size:1.3rem}
+.pals .lock small{display:block;font-size:.7rem}
+.note{margin:10px 0 0;font-weight:700}
+.dots{display:flex;gap:5px;flex:1;justify-content:center}
+.dots i{width:14px;height:14px;border-radius:50%;background:#fff8}
+.dots i.d{background:var(--grass2)}.dots i.c{background:var(--sun);transform:scale(1.3)}
+.card{background:var(--card);border-radius:28px;padding:18px 14px 22px;margin:14px 0;text-align:center;position:relative;box-shadow:0 7px 0 #0002}
+.card .say{position:absolute;top:10px;right:10px;width:48px;height:48px;font-size:1.3rem;background:#eef;box-shadow:none}
+.mode{font-weight:700;color:#6a62a0}
+.vis{font-size:2rem;line-height:1.35;margin:10px 0;word-break:break-all}
+.vis.big{font-size:2.3rem}.vis b{font-size:2rem;margin:0 6px}
+.off{opacity:.25;filter:grayscale(1)}
+.grp{display:inline-block;background:#eef;border-radius:14px;padding:2px 8px;margin:3px}
+.eq{font-size:2.6rem;font-weight:800;overflow-wrap:anywhere}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.a{min-height:88px;border-radius:26px;font-size:2.4rem;font-weight:800;color:#fff;box-shadow:0 7px 0 #0003;animation:pop .35s backwards}
+.a:nth-child(1){background:var(--coral);animation-delay:.05s}.a:nth-child(2){background:#f0a500;animation-delay:.1s}.a:nth-child(3){background:var(--grape);animation-delay:.15s}.a:nth-child(4){background:#2fb7e8;animation-delay:.2s}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.a.good{background:#2bb24c;transform:scale(1.06)}.a.bad{background:#9a97ad;animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.end{text-align:center}.end .stars{font-size:3rem}.end .big{font-size:2rem;font-weight:800;margin:6px 0}
+.end .row{display:flex;gap:12px;margin-top:18px}.end .row button{flex:1;min-height:68px;border-radius:22px;font-weight:700;font-size:1.1rem;background:#fff;box-shadow:0 5px 0 #0002}
+.end .row .go{background:var(--sun);box-shadow:0 5px 0 #e0b400}
+.fx{position:fixed;top:-40px;font-size:2rem;animation:fall 1.6s ease-in forwards;pointer-events:none;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><span>☁️</span><span>☁️</span></div>
+<main id="app"></main>
+<script>
+/* Zoo-Maths – copains : [emoji, nom, étoiles pour débloquer, article] */
+const A=[["🐰","lapin",0,"ton"],["🐱","chat",10,"ton"],["🐶","chien",25,"ton"],["🦊","renard",40,"ton"],["🐼","panda",60,"ton"],["🐸","grenouille",80,"ta"],["🦁","lion",100,"ton"],["🐵","singe",130,"ton"]];
+const M={add:["➕","Additions"],sub:["➖","Soustractions"],mul:["✖️","Multiplications"],cnt:["🔢","Compter"]};
+const LV=[["🌱","Petit","4–6 ans"],["🌿","Moyen","7–8 ans"],["🌳","Grand","9–10 ans"]];
+const ROUNDS=10;
+let S={stars:0,mascot:0,level:0,sound:true},G=null;
+try{Object.assign(S,JSON.parse(localStorage.getItem("zoomaths")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("zoomaths",JSON.stringify(S))}catch(e){}};
+const app=document.getElementById("app");
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[R(0,a.length-1)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+
+let ac;function beep(fs){if(!S.sound)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();fs.forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*.12;o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.22)})}catch(e){}}
+function speak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";u.rate=.9;speechSynthesis.speak(u)}catch(e){}}
+function burst(){["⭐","🎉","✨","🌈","🎈"].forEach((e,k)=>{for(let i=0;i<3;i++){const s=document.createElement("span");s.className="fx";s.textContent=e;s.style.left=R(2,92)+"vw";s.style.animationDelay=(k*.08+i*.1)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),2200)}})}
+
+/* Génération des questions */
+function makeQ(m,l){const e=A[S.mascot][0];let a,b,ans,txt,say,vis="";
+if(m=="add"){const mx=[10,20,100][l];a=R(1,mx-1);b=R(1,mx-a);ans=a+b;txt=`${a} + ${b} = ?`;say=`${a} plus ${b}, égale combien ?`;if(ans<=20)vis=`<div class="vis">${e.repeat(a)} <b>+</b> ${e.repeat(b)}</div>`}
+else if(m=="sub"){const mx=[10,20,100][l];a=R(2,mx);b=R(1,a-1);ans=a-b;txt=`${a} − ${b} = ?`;say=`${a} moins ${b}, égale combien ?`;if(a<=20)vis=`<div class="vis">${e.repeat(a-b)}<span class="off">${e.repeat(b)}</span></div>`}
+else if(m=="mul"){a=pick([[1,2,5,10],[2,3,4,5],[2,3,4,5,6,7,8,9,10]][l]);b=R(1,[5,10,10][l]);ans=a*b;txt=`${a} × ${b} = ?`;say=`${a} fois ${b}, égale combien ?`;if(ans<=30)vis=`<div class="vis">${`<span class="grp">${e.repeat(b)}</span>`.repeat(a)}</div>`}
+else{const n=R(1,[10,15,20][l]);ans=n;txt="Combien ?";say="Combien d’animaux vois-tu ?";vis=`<div class="vis big">${pick(A)[0].repeat(n)}</div>`}
+const o=new Set([ans]),sp=ans>20?10:3;while(o.size<4){const d=ans+R(-sp,sp);if(d>=1)o.add(d)}
+return{txt,say,vis,ans,opts:shuffle([...o])}}
+
+/* Écran d’accueil */
+function home(){G=null;const nx=A.find(a=>a[2]>S.stars);
+app.innerHTML=`<header class="bar"><span class="chip">⭐ ${S.stars}</span><h1>Zoo-Maths</h1><button class="ic" id="snd" aria-label="Activer ou couper le son">${S.sound?"🔊":"🔇"}</button></header>
+<div class="hero"><div class="mascot" id="m">${A[S.mascot][0]}</div><div class="bubble">Salut ! Je suis ${A[S.mascot][3]} ${A[S.mascot][1]}. On joue aux maths ?</div></div>
+<h2>Ton niveau</h2><div class="lv">${LV.map((v,i)=>`<button data-l="${i}" class="${i==S.level?"on":""}">${v[0]} ${v[1]}<small>${v[2]}</small></button>`).join("")}</div>
+<h2>Choisis un jeu</h2><div class="modes">${Object.entries(M).map(([k,v])=>`<button class="mb" data-m="${k}"><span>${v[0]}</span>${v[1]}</button>`).join("")}</div>
+<h2>Tes copains</h2><div class="pals">${A.map((a,i)=>S.stars>=a[2]?`<button data-p="${i}" class="${i==S.mascot?"on":""}" aria-label="${a[1]}">${a[0]}</button>`:`<button class="lock" disabled aria-label="${a[1]} verrouillé">🔒<small>${a[2]}⭐</small></button>`).join("")}</div>
+${nx?`<p class="note">Encore ${nx[2]-S.stars} ⭐ pour débloquer ${nx[0]} !</p>`:`<p class="note">Bravo, tu as tous les copains ! 🎉</p>`}`;
+app.querySelector("#snd").onclick=()=>{S.sound=!S.sound;save();home()};
+app.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{S.level=+b.dataset.l;save();home()});
+app.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{S.mascot=+b.dataset.p;save();home()});
+app.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>start(b.dataset.m))}
+
+/* Partie */
+function start(m){G={m,i:0,ok:0,miss:0,lock:0,q:makeQ(m,S.level)};game()}
+function game(){const q=G.q;
+app.innerHTML=`<header class="bar"><button class="ic" id="hm" aria-label="Retour à l’accueil">🏠</button><div class="dots">${Array.from({length:ROUNDS},(_,i)=>`<i class="${i<G.i?"d":i==G.i?"c":""}"></i>`).join("")}</div><span class="chip">⭐ <span id="ok">${G.ok}</span></span></header>
+<section class="card"><div class="mode">${M[G.m][0]} ${M[G.m][1]}</div>${q.vis}<div class="eq">${q.txt}</div><button class="ic say" id="say" aria-label="Écouter la question">🔈</button></section>
+<div class="ans">${q.opts.map(o=>`<button class="a" data-v="${o}">${o}</button>`).join("")}</div>
+<div class="stage"><div class="mascot" id="m">${A[S.mascot][0]}</div><div class="bubble" id="bub">Choisis la bonne réponse !</div></div>`;
+app.querySelector("#hm").onclick=home;app.querySelector("#say").onclick=()=>speak(q.say);
+app.querySelectorAll(".a").forEach(b=>b.onclick=()=>answer(b))}
+function mood(c){const m=document.getElementById("m");m.classList.remove("jump","wig");void m.offsetWidth;m.classList.add(c)}
+function answer(b){if(G.lock)return;const bub=document.getElementById("bub");
+if(+b.dataset.v==G.q.ans){G.lock=1;b.classList.add("good");if(!G.miss)G.ok++;document.getElementById("ok").textContent=G.ok;
+beep([523,659,784]);bub.textContent=pick(["Bravo !","Génial !","Super !","Tu es un champion !","Waouh !"]);mood("jump");burst();setTimeout(next,1300)}
+else{G.miss=1;b.classList.add("bad");b.disabled=true;beep([200]);bub.textContent=pick(["Presque ! Essaie encore","Courage, tu y es presque !"]);mood("wig")}}
+function next(){G.i++;G.miss=0;G.lock=0;if(G.i>=ROUNDS)end();else{G.q=makeQ(G.m,S.level);game()}}
+function end(){const before=S.stars;S.stars+=G.ok;save();const nw=A.filter(a=>a[2]>before&&a[2]<=S.stars),n=G.ok>=9?3:G.ok>=6?2:1,m=G.m;
+app.innerHTML=`<div class="end"><div class="hero" style="justify-content:center"><div class="mascot jump" id="m">${A[S.mascot][0]}</div></div>
+<div class="big">${n==3?"Incroyable !":n==2?"Très bien !":"Bien joué !"}</div>
+<div class="stars" aria-label="${n} étoiles sur 3">${"⭐".repeat(n)}${"☆".repeat(3-n)}</div>
+<p class="big">${G.ok} bonnes réponses du premier coup<br>+${G.ok} ⭐</p>
+${nw.length?`<p class="big">Nouveau copain : ${nw.map(a=>a[0]).join(" ")} !</p>`:""}
+<div class="row"><button id="hm">🏠 Accueil</button><button class="go" id="rp">🔁 Rejouer</button></div></div>`;
+burst();beep([523,659,784,1047]);app.querySelector("#hm").onclick=home;app.querySelector("#rp").onclick=()=>start(m)}
+home();
+</script>
+</body>
+</html>
